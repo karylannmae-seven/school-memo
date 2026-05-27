@@ -104,6 +104,98 @@
     .preview-modal-open {
       overflow: hidden;
     }
+
+    /* PDF Download Button */
+    .pdf-btn {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0.5rem;
+      background-color: #dc2626;
+      color: white;
+      border-radius: 0.375rem;
+      transition: all 0.2s;
+      cursor: pointer;
+      text-decoration: none;
+      min-width: 3.5rem;
+      border: none;
+    }
+
+    .pdf-btn:hover {
+      background-color: #b91c1c;
+    }
+
+    .pdf-btn i {
+      width: 1.5rem;
+      height: 1.5rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .pdf-btn span {
+      font-size: 0.625rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    /* Image/JPG Download Button */
+    .img-btn {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0.5rem;
+      background-color: #059669;
+      color: white;
+      border-radius: 0.375rem;
+      transition: all 0.2s;
+      cursor: pointer;
+      text-decoration: none;
+      min-width: 3.5rem;
+      border: none;
+    }
+
+    .img-btn:hover {
+      background-color: #047857;
+    }
+
+    .img-btn i {
+      width: 1.5rem;
+      height: 1.5rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .img-btn span {
+      font-size: 0.625rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    /* Preview Button */
+    .preview-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.5rem;
+      background-color: #f1f5f9;
+      color: #64748b;
+      border-radius: 0.375rem;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+
+    .preview-btn:hover {
+      background-color: #e2e8f0;
+      color: #475569;
+    }
+
+    .preview-btn i {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
   </style>
 </head>
 <body class="flex flex-col min-h-full bg-slate-50 text-slate-800">
@@ -157,11 +249,12 @@
               <td>School Principal's Office</td>
               <td class="text-right whitespace-nowrap">
                 <div class="inline-flex gap-2">
-                  <a href="https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2009-017,%20S.%202024.pdf" target="_blank" class="p-2 bg-rose-50 hover:bg-rose-100 text-rose-600 rounded-lg transition-colors">
-                    <i data-lucide="file-pdf" class="w-4 h-4"></i>
+                  <a href="https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2009-017,%20S.%202024.pdf" target="_blank" class="pdf-btn">
+                    <i data-lucide="file-pdf"></i>
+                    <span>PDF</span>
                   </a>
-                  <button onclick="previewDocument('SM 09-017 s. 2024', 'https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2009-017,%20S.%202024.pdf')" class="p-2 bg-slate-50 hover:bg-slate-100 text-slate-600 rounded-lg transition-colors">
-                    <i data-lucide="eye" class="w-4 h-4"></i>
+                  <button onclick="previewDocument('SM 09-017 s. 2024', 'https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2009-017,%20S.%202024.pdf')" class="preview-btn">
+                    <i data-lucide="eye"></i>
                   </button>
                 </div>
               </td>
@@ -175,11 +268,12 @@
               <td>School Principal's Office</td>
               <td class="text-right whitespace-nowrap">
                 <div class="inline-flex gap-2">
-                  <a href="https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2009-016,%20S.%202024.pdf" target="_blank" class="p-2 bg-rose-50 hover:bg-rose-100 text-rose-600 rounded-lg transition-colors">
-                    <i data-lucide="file-pdf" class="w-4 h-4"></i>
+                  <a href="https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2009-016,%20S.%202024.pdf" target="_blank" class="pdf-btn">
+                    <i data-lucide="file-pdf"></i>
+                    <span>PDF</span>
                   </a>
-                  <button onclick="previewDocument('SM 09-016 s. 2024', 'https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2009-016,%20S.%202024.pdf')" class="p-2 bg-slate-50 hover:bg-slate-100 text-slate-600 rounded-lg transition-colors">
-                    <i data-lucide="eye" class="w-4 h-4"></i>
+                  <button onclick="previewDocument('SM 09-016 s. 2024', 'https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2009-016,%20S.%202024.pdf')" class="preview-btn">
+                    <i data-lucide="eye"></i>
                   </button>
                 </div>
               </td>
@@ -193,11 +287,12 @@
               <td>School Principal's Office</td>
               <td class="text-right whitespace-nowrap">
                 <div class="inline-flex gap-2">
-                  <a href="https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2009-015,%20S.%202024.pdf" target="_blank" class="p-2 bg-rose-50 hover:bg-rose-100 text-rose-600 rounded-lg transition-colors">
-                    <i data-lucide="file-pdf" class="w-4 h-4"></i>
+                  <a href="https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2009-015,%20S.%202024.pdf" target="_blank" class="pdf-btn">
+                    <i data-lucide="file-pdf"></i>
+                    <span>PDF</span>
                   </a>
-                  <button onclick="previewDocument('SM 09-015 s. 2024', 'https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2009-015,%20S.%202024.pdf')" class="p-2 bg-slate-50 hover:bg-slate-100 text-slate-600 rounded-lg transition-colors">
-                    <i data-lucide="eye" class="w-4 h-4"></i>
+                  <button onclick="previewDocument('SM 09-015 s. 2024', 'https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2009-015,%20S.%202024.pdf')" class="preview-btn">
+                    <i data-lucide="eye"></i>
                   </button>
                 </div>
               </td>
@@ -211,11 +306,12 @@
               <td>School Principal's Office</td>
               <td class="text-right whitespace-nowrap">
                 <div class="inline-flex gap-2">
-                  <a href="https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2009-014,%20S.%202024.pdf" target="_blank" class="p-2 bg-rose-50 hover:bg-rose-100 text-rose-600 rounded-lg transition-colors">
-                    <i data-lucide="file-pdf" class="w-4 h-4"></i>
+                  <a href="https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2009-014,%20S.%202024.pdf" target="_blank" class="pdf-btn">
+                    <i data-lucide="file-pdf"></i>
+                    <span>PDF</span>
                   </a>
-                  <button onclick="previewDocument('SM 09-014 s. 2024', 'https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2009-014,%20S.%202024.pdf')" class="p-2 bg-slate-50 hover:bg-slate-100 text-slate-600 rounded-lg transition-colors">
-                    <i data-lucide="eye" class="w-4 h-4"></i>
+                  <button onclick="previewDocument('SM 09-014 s. 2024', 'https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2009-014,%20S.%202024.pdf')" class="preview-btn">
+                    <i data-lucide="eye"></i>
                   </button>
                 </div>
               </td>
@@ -229,11 +325,12 @@
               <td>School Principal's Office</td>
               <td class="text-right whitespace-nowrap">
                 <div class="inline-flex gap-2">
-                  <a href="https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2009-013,%20S.%202024.pdf" target="_blank" class="p-2 bg-rose-50 hover:bg-rose-100 text-rose-600 rounded-lg transition-colors">
-                    <i data-lucide="file-pdf" class="w-4 h-4"></i>
+                  <a href="https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2009-013,%20S.%202024.pdf" target="_blank" class="pdf-btn">
+                    <i data-lucide="file-pdf"></i>
+                    <span>PDF</span>
                   </a>
-                  <button onclick="previewDocument('SM 09-013 s. 2024', 'https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2009-013,%20S.%202024.pdf')" class="p-2 bg-slate-50 hover:bg-slate-100 text-slate-600 rounded-lg transition-colors">
-                    <i data-lucide="eye" class="w-4 h-4"></i>
+                  <button onclick="previewDocument('SM 09-013 s. 2024', 'https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2009-013,%20S.%202024.pdf')" class="preview-btn">
+                    <i data-lucide="eye"></i>
                   </button>
                 </div>
               </td>
@@ -247,11 +344,12 @@
               <td>School Principal's Office</td>
               <td class="text-right whitespace-nowrap">
                 <div class="inline-flex gap-2">
-                  <a href="https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2008-012,%20S.%202024.jpg" target="_blank" class="p-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-600 rounded-lg transition-colors">
-                    <i data-lucide="image" class="w-4 h-4"></i>
+                  <a href="https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2008-012,%20S.%202024.jpg" target="_blank" class="img-btn">
+                    <i data-lucide="image"></i>
+                    <span>JPG</span>
                   </a>
-                  <button onclick="previewDocument('SM 08-012 s. 2024', 'https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2008-012,%20S.%202024.jpg')" class="p-2 bg-slate-50 hover:bg-slate-100 text-slate-600 rounded-lg transition-colors">
-                    <i data-lucide="eye" class="w-4 h-4"></i>
+                  <button onclick="previewDocument('SM 08-012 s. 2024', 'https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2008-012,%20S.%202024.jpg')" class="preview-btn">
+                    <i data-lucide="eye"></i>
                   </button>
                 </div>
               </td>
@@ -265,11 +363,12 @@
               <td>School Principal's Office</td>
               <td class="text-right whitespace-nowrap">
                 <div class="inline-flex gap-2">
-                  <a href="https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2008-011,%20S.%202024.pdf" target="_blank" class="p-2 bg-rose-50 hover:bg-rose-100 text-rose-600 rounded-lg transition-colors">
-                    <i data-lucide="file-pdf" class="w-4 h-4"></i>
+                  <a href="https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2008-011,%20S.%202024.pdf" target="_blank" class="pdf-btn">
+                    <i data-lucide="file-pdf"></i>
+                    <span>PDF</span>
                   </a>
-                  <button onclick="previewDocument('SM 08-011 s. 2024', 'https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2008-011,%20S.%202024.pdf')" class="p-2 bg-slate-50 hover:bg-slate-100 text-slate-600 rounded-lg transition-colors">
-                    <i data-lucide="eye" class="w-4 h-4"></i>
+                  <button onclick="previewDocument('SM 08-011 s. 2024', 'https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2008-011,%20S.%202024.pdf')" class="preview-btn">
+                    <i data-lucide="eye"></i>
                   </button>
                 </div>
               </td>
@@ -283,11 +382,12 @@
               <td>School Principal's Office</td>
               <td class="text-right whitespace-nowrap">
                 <div class="inline-flex gap-2">
-                  <a href="https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2008-010,%20S.%202024.jpg" target="_blank" class="p-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-600 rounded-lg transition-colors">
-                    <i data-lucide="image" class="w-4 h-4"></i>
+                  <a href="https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2008-010,%20S.%202024.jpg" target="_blank" class="img-btn">
+                    <i data-lucide="image"></i>
+                    <span>JPG</span>
                   </a>
-                  <button onclick="previewDocument('SM 08-010 s. 2024', 'https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2008-010,%20S.%202024.jpg')" class="p-2 bg-slate-50 hover:bg-slate-100 text-slate-600 rounded-lg transition-colors">
-                    <i data-lucide="eye" class="w-4 h-4"></i>
+                  <button onclick="previewDocument('SM 08-010 s. 2024', 'https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2008-010,%20S.%202024.jpg')" class="preview-btn">
+                    <i data-lucide="eye"></i>
                   </button>
                 </div>
               </td>
@@ -301,11 +401,12 @@
               <td>School Principal's Office</td>
               <td class="text-right whitespace-nowrap">
                 <div class="inline-flex gap-2">
-                  <a href="https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2008-009,%20S.%202024.jpg" target="_blank" class="p-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-600 rounded-lg transition-colors">
-                    <i data-lucide="image" class="w-4 h-4"></i>
+                  <a href="https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2008-009,%20S.%202024.jpg" target="_blank" class="img-btn">
+                    <i data-lucide="image"></i>
+                    <span>JPG</span>
                   </a>
-                  <button onclick="previewDocument('SM 08-009 s. 2024', 'https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2008-009,%20S.%202024.jpg')" class="p-2 bg-slate-50 hover:bg-slate-100 text-slate-600 rounded-lg transition-colors">
-                    <i data-lucide="eye" class="w-4 h-4"></i>
+                  <button onclick="previewDocument('SM 08-009 s. 2024', 'https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2008-009,%20S.%202024.jpg')" class="preview-btn">
+                    <i data-lucide="eye"></i>
                   </button>
                 </div>
               </td>
@@ -319,11 +420,12 @@
               <td>School Principal's Office</td>
               <td class="text-right whitespace-nowrap">
                 <div class="inline-flex gap-2">
-                  <a href="https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2008-008,%20S.%202-24.jpg" target="_blank" class="p-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-600 rounded-lg transition-colors">
-                    <i data-lucide="image" class="w-4 h-4"></i>
+                  <a href="https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2008-008,%20S.%202-24.jpg" target="_blank" class="img-btn">
+                    <i data-lucide="image"></i>
+                    <span>JPG</span>
                   </a>
-                  <button onclick="previewDocument('SM 08-008 s. 2024', 'https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2008-008,%20S.%202-24.jpg')" class="p-2 bg-slate-50 hover:bg-slate-100 text-slate-600 rounded-lg transition-colors">
-                    <i data-lucide="eye" class="w-4 h-4"></i>
+                  <button onclick="previewDocument('SM 08-008 s. 2024', 'https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2008-008,%20S.%202-24.jpg')" class="preview-btn">
+                    <i data-lucide="eye"></i>
                   </button>
                 </div>
               </td>
@@ -337,11 +439,12 @@
               <td>School Principal's Office</td>
               <td class="text-right whitespace-nowrap">
                 <div class="inline-flex gap-2">
-                  <a href="https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2008-007,%20S.%202024.jpg" target="_blank" class="p-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-600 rounded-lg transition-colors">
-                    <i data-lucide="image" class="w-4 h-4"></i>
+                  <a href="https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2008-007,%20S.%202024.jpg" target="_blank" class="img-btn">
+                    <i data-lucide="image"></i>
+                    <span>JPG</span>
                   </a>
-                  <button onclick="previewDocument('SM 08-007 s. 2024', 'https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2008-007,%20S.%202024.jpg')" class="p-2 bg-slate-50 hover:bg-slate-100 text-slate-600 rounded-lg transition-colors">
-                    <i data-lucide="eye" class="w-4 h-4"></i>
+                  <button onclick="previewDocument('SM 08-007 s. 2024', 'https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2008-007,%20S.%202024.jpg')" class="preview-btn">
+                    <i data-lucide="eye"></i>
                   </button>
                 </div>
               </td>
@@ -355,11 +458,12 @@
               <td>School Principal's Office</td>
               <td class="text-right whitespace-nowrap">
                 <div class="inline-flex gap-2">
-                  <a href="https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2007-006,%20S.%202024.jpg" target="_blank" class="p-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-600 rounded-lg transition-colors">
-                    <i data-lucide="image" class="w-4 h-4"></i>
+                  <a href="https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2007-006,%20S.%202024.jpg" target="_blank" class="img-btn">
+                    <i data-lucide="image"></i>
+                    <span>JPG</span>
                   </a>
-                  <button onclick="previewDocument('SM 07-006 s. 2024', 'https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2007-006,%20S.%202024.jpg')" class="p-2 bg-slate-50 hover:bg-slate-100 text-slate-600 rounded-lg transition-colors">
-                    <i data-lucide="eye" class="w-4 h-4"></i>
+                  <button onclick="previewDocument('SM 07-006 s. 2024', 'https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2007-006,%20S.%202024.jpg')" class="preview-btn">
+                    <i data-lucide="eye"></i>
                   </button>
                 </div>
               </td>
@@ -373,11 +477,12 @@
               <td>School Principal's Office</td>
               <td class="text-right whitespace-nowrap">
                 <div class="inline-flex gap-2">
-                  <a href="https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2007-005,%20S.%202024.jpg" target="_blank" class="p-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-600 rounded-lg transition-colors">
-                    <i data-lucide="image" class="w-4 h-4"></i>
+                  <a href="https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2007-005,%20S.%202024.jpg" target="_blank" class="img-btn">
+                    <i data-lucide="image"></i>
+                    <span>JPG</span>
                   </a>
-                  <button onclick="previewDocument('SM 07-005 s. 2024', 'https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2007-005,%20S.%202024.jpg')" class="p-2 bg-slate-50 hover:bg-slate-100 text-slate-600 rounded-lg transition-colors">
-                    <i data-lucide="eye" class="w-4 h-4"></i>
+                  <button onclick="previewDocument('SM 07-005 s. 2024', 'https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2007-005,%20S.%202024.jpg')" class="preview-btn">
+                    <i data-lucide="eye"></i>
                   </button>
                 </div>
               </td>
@@ -391,11 +496,12 @@
               <td>School Principal's Office</td>
               <td class="text-right whitespace-nowrap">
                 <div class="inline-flex gap-2">
-                  <a href="https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2007-004,%20S.%202024.jpg" target="_blank" class="p-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-600 rounded-lg transition-colors">
-                    <i data-lucide="image" class="w-4 h-4"></i>
+                  <a href="https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2007-004,%20S.%202024.jpg" target="_blank" class="img-btn">
+                    <i data-lucide="image"></i>
+                    <span>JPG</span>
                   </a>
-                  <button onclick="previewDocument('SM 07-004 s. 2024', 'https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2007-004,%20S.%202024.jpg')" class="p-2 bg-slate-50 hover:bg-slate-100 text-slate-600 rounded-lg transition-colors">
-                    <i data-lucide="eye" class="w-4 h-4"></i>
+                  <button onclick="previewDocument('SM 07-004 s. 2024', 'https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2007-004,%20S.%202024.jpg')" class="preview-btn">
+                    <i data-lucide="eye"></i>
                   </button>
                 </div>
               </td>
@@ -409,11 +515,12 @@
               <td>School Principal's Office</td>
               <td class="text-right whitespace-nowrap">
                 <div class="inline-flex gap-2">
-                  <a href="https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2007-003,%20S.%202024.jpg" target="_blank" class="p-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-600 rounded-lg transition-colors">
-                    <i data-lucide="image" class="w-4 h-4"></i>
+                  <a href="https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2007-003,%20S.%202024.jpg" target="_blank" class="img-btn">
+                    <i data-lucide="image"></i>
+                    <span>JPG</span>
                   </a>
-                  <button onclick="previewDocument('SM 07-003 s. 2024', 'https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2007-003,%20S.%202024.jpg')" class="p-2 bg-slate-50 hover:bg-slate-100 text-slate-600 rounded-lg transition-colors">
-                    <i data-lucide="eye" class="w-4 h-4"></i>
+                  <button onclick="previewDocument('SM 07-003 s. 2024', 'https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2007-003,%20S.%202024.jpg')" class="preview-btn">
+                    <i data-lucide="eye"></i>
                   </button>
                 </div>
               </td>
@@ -427,11 +534,12 @@
               <td>School Principal's Office</td>
               <td class="text-right whitespace-nowrap">
                 <div class="inline-flex gap-2">
-                  <a href="https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2007-002,%20S.%202024.jpg" target="_blank" class="p-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-600 rounded-lg transition-colors">
-                    <i data-lucide="image" class="w-4 h-4"></i>
+                  <a href="https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2007-002,%20S.%202024.jpg" target="_blank" class="img-btn">
+                    <i data-lucide="image"></i>
+                    <span>JPG</span>
                   </a>
-                  <button onclick="previewDocument('SM 07-002 s. 2024', 'https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2007-002,%20S.%202024.jpg')" class="p-2 bg-slate-50 hover:bg-slate-100 text-slate-600 rounded-lg transition-colors">
-                    <i data-lucide="eye" class="w-4 h-4"></i>
+                  <button onclick="previewDocument('SM 07-002 s. 2024', 'https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2007-002,%20S.%202024.jpg')" class="preview-btn">
+                    <i data-lucide="eye"></i>
                   </button>
                 </div>
               </td>
@@ -445,11 +553,12 @@
               <td>School Principal's Office</td>
               <td class="text-right whitespace-nowrap">
                 <div class="inline-flex gap-2">
-                  <a href="https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2007-001,%20s.%202024.jpg" target="_blank" class="p-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-600 rounded-lg transition-colors">
-                    <i data-lucide="image" class="w-4 h-4"></i>
+                  <a href="https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2007-001,%20s.%202024.jpg" target="_blank" class="img-btn">
+                    <i data-lucide="image"></i>
+                    <span>JPG</span>
                   </a>
-                  <button onclick="previewDocument('SM 07-001 s. 2024', 'https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2007-001,%20s.%202024.jpg')" class="p-2 bg-slate-50 hover:bg-slate-100 text-slate-600 rounded-lg transition-colors">
-                    <i data-lucide="eye" class="w-4 h-4"></i>
+                  <button onclick="previewDocument('SM 07-001 s. 2024', 'https://raw.githubusercontent.com/karylannmae-seven/school-memo/main/SM%2007-001,%20s.%202024.jpg')" class="preview-btn">
+                    <i data-lucide="eye"></i>
                   </button>
                 </div>
               </td>
