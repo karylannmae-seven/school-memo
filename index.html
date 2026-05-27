@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-slate-50">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>School Memorandum Portal</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  
+  <!-- DataTables CSS & JS -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+  <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+
+  <!-- Google Fonts & Lucide Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    
+    /* Customizing DataTables elements to match premium look */
+    .dataTables_wrapper .dataTables_length, 
+    .dataTables_wrapper .dataTables_filter {
+      margin-bottom: 1.25rem;
+      color: #475569;
+    }
+    
+    .dataTables_wrapper .dataTables_filter input {
+      border: 1px solid #cbd5e1;
+      border-radius: 0.375rem;
+      padding: 0.375rem 0.75rem;
+      outline: none;
+      transition: all 0.2s;
+    }
+
+    .dataTables_wrapper .dataTables_filter input:focus {
+      border-color: #2097c3;
+      box-shadow: 0 0 0 2px rgba(32, 151, 195, 0.15);
+    }
+
+    .dataTables_wrapper .dataTables_length select {
+      border: 1px solid #cbd5e1;
+      border-radius: 0.375rem;
+      padding: 0.25rem 1.5rem 0.25rem 0.5rem;
+    }
+
+    table.dataTable {
+      border-collapse: collapse !important;
+      border-spacing: 0 !important;
+      width: 100% !important;
+      margin-top: 0.75rem !important;
+      margin-bottom: 0.75rem !important;
+    }
+
+    table.dataTable thead th {
+      background-color: #f8fafc;
+      color: #334155;
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+      border-bottom: 2px solid #e2e8f0 !important;
+      padding: 12px 16px !important;
+    }
+
+    table.dataTable tbody td {
+      padding: 14px 16px !important;
+      border-bottom: 1px solid #f1f5f9 !important;
+      color: #475569;
+      font-size: 0.875rem;
+    }
+
+    table.dataTable tbody tr:hover {
+      background-color: #f8fafc !important;
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button.current, 
+    .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+      background: #2097c3 !important;
+      color: white !important;
+      border: 1px solid #2097c3 !important;
+      border-radius: 0.375rem;
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button {
+      border-radius: 0.375rem;
+      transition: all 0.15s ease;
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+      background: #f1f5f9 !important;
+      color: #0f172a !important;
+      border: 1px solid #cbd5e1 !important;
+    }
+    
+    .preview-modal-open {
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body class="flex flex-col min-h-full text-slate-800">
+
+  <!-- Main Container -->
+  <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
+    
+    <!-- Title and Quick Info Section -->
+    <div class="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div>
+        <h2 class="text-2xl font-bold text-slate-900 flex items-center gap-2">
+          📄 School Memorandum
+        </h2>
+      </div>
+      
+      <!-- Statistics Quick Counters -->
+      <div class="flex gap-3 bg-white p-3 rounded-xl border border-slate-200 shadow-sm">
+        <div class="px-4 border-r border-slate-100">
+          <span class="block text-xs font-medium text-slate-400">Total Memorandums</span>
+          <span class="text-lg font-bold text-[#2097c3]" id="totalMemos">14</span>
+        </div>
+        <div class="px-4">
+          <span class="block text-xs font-medium text-slate-400">School Year</span>
+          <span class="text-lg font-bold text-slate-700">2024-2025</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Table Container -->
+    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden p-4 sm:p-6">
+      <div class="overflow-x-auto">
+        <table id="memoTable" class="display min-w-full">
+          <thead>
+            <tr>
+              <th class="rounded-l-lg">SM No.</th>
+              <th>Title</th>
+              <th>Date Posted</th>
+              <th>Posted By</th>
+              <th class="rounded-r-lg text-right">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="font-semibold text-slate-900">
+                <a href="memos/SM_07_017_s_2024.pdf" class="text-[#2097c3] hover:underline hover:text-[#187ca3] inline-flex items-center gap-1.5" target="_blank">
+                  SM 07-017 s. 2024
+                </a>
+              </td>
+              <td class="max-w-xs md:max-w-md font-medium text-slate-800">Shifting to Modular Distance Learning and Distribution of Learning Activity Sheets (LAS)/ Modules to Learners</td>
+              <td data-order="2024-09-26" class="whitespace-nowrap">September 26, 2024</td>
+              <td>School Principal's Office</td>
+              <td class="text-right whitespace-nowrap">
+                <div class="inline-flex gap-2">
+                  <a href="memos/SM_07_017_s_2024.pdf" target="_blank" class="p-2 bg-rose-50 hover:bg-rose-100 text-rose-600 rounded-lg transition-colors border border-rose-100 flex items-center justify-center" title="Open PDF">
+                    <i data-lucide="file-pdf" class="w-4 h-4"></i>
+                  </a>
+                  <button onclick="previewDocument('SM 07-017 s. 2024', 'memos/SM_07_017_s_2024.pdf')" class="p-2 bg-slate-50 hover:bg-slate-100 text-slate-600 rounded-lg transition-colors border border-slate-200 flex items-center justify-center" title="Quick Preview">
+                    <i data-lucide="eye" class="w-4 h-4"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="font-semibold text-slate-900">
+                <a href="memos/SM_07_016_s_2024.pdf" class="text-[#2097c3] hover:underline" target="_blank">SM 07-016 s. 2024</a>
+              </td>
+              <td class="max-w-xs md:max-w-md font-medium text-slate-800">Use of Document Routing Slip for All Documents Relating to Procurement and Liquidation of any Funding Source</td>
+              <td data-order="2024-09-17" class="whitespace-nowrap">September 17, 2024</td>
+              <td>School Principal's Office</td>
+              <td class="text-right whitespace-nowrap">
+                <div class="inline-flex gap-2">
+                  <a href="memos/SM_07_016_s_2024.pdf" target="_blank" class="p-2 bg-rose-50 hover:bg-rose-100 text-rose-600 rounded-lg transition-colors border border-rose-100 flex items-center justify-center">
+                    <i data-lucide="file-pdf" class="w-4 h-4"></i>
+                  </a>
+                  <button onclick="previewDocument('SM 07-016 s. 2024', 'memos/SM_07_016_s_2024.pdf')" class="p-2 bg-slate-50 hover:bg-slate-100 text-slate-600 rounded-lg transition-colors border border-slate-200 flex items-center justify-center">
+                    <i data-lucide="eye" class="w-4 h-4"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="font-semibold text-slate-900">
+                <a href="memos/SM_07_015_s_2024.pdf" class="text-[#2097c3] hover:underline" target="_blank">SM 07-015 s. 2024</a>
+              </td>
+              <td class="max-w-xs md:max-w-md font-medium text-slate-800">Schedule of ALIVE Classes</td>
+              <td data-order="2024-09-16" class="whitespace-nowrap">September 16, 2024</td>
+              <td>School Principal's Office</td>
+              <td class="text-right whitespace-nowrap">
+                <div class="inline-flex gap-2">
+                  <a href="memos/SM_07_015_s_2024.pdf" target="_blank" class="p-2 bg-rose-50 hover:bg-rose-100 text-rose-600 rounded-lg transition-colors border border-rose-100 flex items-center justify-center">
+                    <i data-lucide="file-pdf" class="w-4 h-4"></i>
+                  </a>
+                  <button onclick="previewDocument('SM 07-015 s. 2024', 'memos/SM_07_015_s_2024.pdf')" class="p-2 bg-slate-50 hover:bg-slate-100 text-slate-600 rounded-lg transition-colors border border-slate-200 flex items-center justify-center">
+                    <i data-lucide="eye" class="w-4 h-4"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="font-semibold text-slate-900">
+                <a href="memos/SM_07_014_s_2024.pdf" class="text-[#2097c3] hover:underline" target="_blank">SM 07-014 s. 2024</a>
+              </td>
+              <td class="max-w-xs md:max-w-md font-medium text-slate-800">Composition of the School-Based Feeding Program (SBFP) School Core Group</td>
+              <td data-order="2024-09-09" class="whitespace-nowrap">September 9, 2024</td>
+              <td>School Principal's Office</td>
+              <td class="text-right whitespace-nowrap">
+                <div class="inline-flex gap-2">
+                  <a href="memos/SM_07_014_s_2024.pdf" target="_blank" class="p-2 bg-rose-50 hover:bg-rose-100 text-rose-600 rounded-lg transition-colors border border-rose-100 flex items-center justify-center">
+                    <i data-lucide="file-pdf" class="w-4 h-4"></i>
+                  </a>
+                  <button onclick="previewDocument('SM 07-014 s. 2024', 'memos/SM_07_014_s_2024.pdf')" class="p-2 bg-slate-50 hover:bg-slate-100 text-slate-600 rounded-lg transition-colors border border-slate-200 flex items-center justify-center">
+                    <i data-lucide="eye" class="w-4 h-4"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="font-semibold text-slate-900">
+                <a href="memos/SM_07_013_s_2024.pdf" class="text-[#2097c3] hover:underline" target="_blank">SM 07-013 s. 2024</a>
+              </td>
+              <td class="max-w-xs md:max-w-md font-medium text-slate-800">School Ranking for Various Vacant Teaching Positions</td>
+              <td data-order="2024-09-02" class="whitespace-nowrap">September 2, 2024</td>
+              <td>School Principal's Office</td>
+              <td class="text-right whitespace-nowrap">
+                <div class="inline-flex gap-2">
+                  <a href="memos/SM_07_013_s_2024.pdf" target="_blank" class="p-2 bg-rose-50 hover:bg-rose-100 text-rose-600 rounded-lg transition-colors border border-rose-100 flex items-center justify-center">
+                    <i data-lucide="file-pdf" class="w-4 h-4"></i>
+                  </a>
+                  <button onclick="previewDocument('SM 07-013 s. 2024', 'memos/SM_07_013_s_2024.pdf')" class="p-2 bg-slate-50 hover:bg-slate-100 text-slate-600 rounded-lg transition-colors border border-slate-200 flex items-center justify-center">
+                    <i data-lucide="eye" class="w-4 h-4"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="font-semibold text-slate-900">
+                <a href="memos/SM_07_012_s_2024.jpg" class="text-[#2097c3] hover:underline" target="_blank">SM 07-012 s. 2024</a>
+              </td>
+              <td class="max-w-xs md:max-w-md font-medium text-slate-800">Monthly Recognition for Cleanest and Orderly Classrooms</td>
+              <td data-order="2024-08-27" class="whitespace-nowrap">August 27, 2024</td>
+              <td>School Principal's Office</td>
+              <td class="text-right whitespace-nowrap">
+                <div class="inline-flex gap-2">
+                  <a href="memos/SM_07_012_s_2024.jpg" target="_blank" class="p-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-600 rounded-lg transition-colors border border-emerald-100 flex items-center justify-center" title="Open Image File">
+                    <i data-lucide="image" class="w-4 h-4"></i>
+                  </a>
+                  <button onclick="previewDocument('SM 07-012 s. 2024', 'memos/SM_07_012_s_2024.jpg')" class="p-2 bg-slate-50 hover:bg-slate-100 text-slate-600 rounded-lg transition-colors border border-slate-200 flex items-center justify-center">
+                    <i data-lucide="eye" class="w-4 h-4"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="font-semibold text-slate-900">
+                <a href="memos/SM_07_011_s_2024.pdf" class="text-[#2097c3] hover:underline" target="_blank">SM 07-011 s. 2024</a>
+              </td>
+              <td class="max-w-xs md:max-w-md font-medium text-slate-800">Submission and Updating of 201 Files</td>
+              <td data-order="2024-08-27" class="whitespace-nowrap">August 27, 2024</td>
+              <td>School Principal's Office</td>
+              <td class="text-right whitespace-nowrap">
+                <div class="inline-flex gap-2">
+                  <a href="memos/SM_07_011_s_2024.pdf" target="_blank" class="p-2 bg-rose-50 hover:bg-rose-100 text-rose-600 rounded-lg transition-colors border border-rose-100 flex items-center justify-center">
+                    <i data-lucide="file-pdf" class="w-4 h-4"></i>
+                  </a>
+                  <button onclick="previewDocument('SM 07-011 s. 2024', 'memos/SM_07_011_s_2024.pdf')" class="p-2 bg-slate-50 hover:bg-slate-100 text-slate-600 rounded-lg transition-colors border border-slate-200 flex items-center justify-center">
+                    <i data-lucide="eye" class="w-4 h-4"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="font-semibold text-slate-900">
+                <a href="memos/SM_07_010_s_2024.jpg" class="text-[#2097c3] hover:underline" target="_blank">SM 07-010 s. 2024</a>
+              </td>
+              <td class="max-w-xs md:max-w-md font-medium text-slate-800">Conduct of Collaborative Expertise and Performance Planning</td>
+              <td data-order="2024-08-13" class="whitespace-nowrap">August 13, 2024</td>
+              <td>School Principal's Office</td>
+              <td class="text-right whitespace-nowrap">
+                <div class="inline-flex gap-2">
+                  <a href="memos/SM_07_010_s_2024.jpg" target="_blank" class="p-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-600 rounded-lg transition-colors border border-emerald-100 flex items-center justify-center">
+                    <i data-lucide="image" class="w-4 h-4"></i>
+                  </a>
+                  <button onclick="previewDocument('SM 07-010 s. 2024', 'memos/SM_07_010_s_2024.jpg')" class="p-2 bg-slate-50 hover:bg-slate-100 text-slate-600 rounded-lg transition-colors border border-slate-200 flex items-center justify-center">
+                    <i data-lucide="eye" class="w-4 h-4"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="font-semibold text-slate-900">
+                <a href="memos/SM_07_009_s_2024.jpg" class="text-[#2097c3] hover:underline" target="_blank">SM 07-009 s. 2024</a>
+              </td>
+              <td class="max-w-xs md:max-w-md font-medium text-slate-800">Suspension of Effectivity of School Memorandum No. 08-007 s. 2024</td>
+              <td data-order="2024-08-12" class="whitespace-nowrap">August 12, 2024</td>
+              <td>School Principal's Office</td>
+              <td class="text-right whitespace-nowrap">
+                <div class="inline-flex gap-2">
+                  <a href="memos/SM_07_009_s_2024.jpg" target="_blank" class="p-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-600 rounded-lg transition-colors border border-emerald-100 flex items-center justify-center">
+                    <i data-lucide="image" class="w-4 h-4"></i>
+                  </a>
+                  <button onclick="previewDocument('SM 07-009 s. 2024', 'memos/SM_07_009_s_2024.jpg')" class="p-2 bg-slate-50 hover:bg-slate-100 text-slate-600 rounded-lg transition-colors border border-slate-200 flex items-center justify-center">
+                    <i data-lucide="eye" class="w-4 h-4"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="font-semibold text-slate-900">
+                <a href="memos/SM_07_007_s_2024.jpg" class="text-[#2097c3] hover:underline" target="_blank">SM 07-007 s. 2024</a>
+              </td>
+              <td class="max-w-xs md:max-w-md font-medium text-slate-800">Composition of the Pupil's Disaster Risk Reduction Managament (PDRRM) Team</td>
+              <td data-order="2024-08-01" class="whitespace-nowrap">August 1, 2024</td>
+              <td>School Principal's Office</td>
+              <td class="text-right whitespace-nowrap">
+                <div class="inline-flex gap-2">
+                  <a href="memos/SM_07_007_s_2024.jpg" target="_blank" class="p-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-600 rounded-lg transition-colors border border-emerald-100 flex items-center justify-center">
+                    <i data-lucide="image" class="w-4 h-4"></i>
+                  </a>
+                  <button onclick="previewDocument('SM 07-007 s. 2024', 'memos/SM_07_007_s_2024.jpg')" class="p-2 bg-slate-50 hover:bg-slate-100 text-slate-600 rounded-lg transition-colors border border-slate-200 flex items-center justify-center">
+                    <i data-lucide="eye" class="w-4 h-4"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="font-semibold text-slate-900">
+                <a href="memos/SM_07_006_s_2024.jpg" class="text-[#2097c3] hover:underline" target="_blank">SM 07-006 s. 2024</a>
+              </td>
+              <td class="max-w-xs md:max-w-md font-medium text-slate-800">Composition of the Pupil's Disaster Risk Reduction Managament (PDRRM) Team</td>
+              <td data-order="2024-07-26" class="whitespace-nowrap">July 26, 2024</td>
+              <td>School Principal's Office</td>
+              <td class="text-right whitespace-nowrap">
+                <div class="inline-flex gap-2">
+                  <a href="memos/SM_07_006_s_2024.jpg" target="_blank" class="p-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-600 rounded-lg transition-colors border border-emerald-100 flex items-center justify-center">
+                    <i data-lucide="image" class="w-4 h-4"></i>
+                  </a>
+                  <button onclick="previewDocument('SM 07-006 s. 2024', 'memos/SM_07_006_s_2024.jpg')" class="p-2 bg-slate-50 hover:bg-slate-100 text-slate-600 rounded-lg transition-colors border border-slate-200 flex items-center justify-center">
+                    <i data-lucide="eye" class="w-4 h-4"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="font-semibold text-slate-900">
+                <a href="memos/SM_07_005_s_2024.jpg" class="text-[#2097c3] hover:underline" target="_blank">SM 07-005 s. 2024</a>
+              </td>
+              <td class="max-w-xs md:max-w-md font-medium text-slate-800">Composition of the School Disaster Risk Reduction Managament (SDRRM) Team</td>
+              <td data-order="2024-07-26" class="whitespace-nowrap">July 26, 2024</td>
+              <td>School Principal's Office</td>
+              <td class="text-right whitespace-nowrap">
+                <div class="inline-flex gap-2">
+                  <a href="memos/SM_07_005_s_2024.jpg" target="_blank" class="p-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-600 rounded-lg transition-colors border border-emerald-100 flex items-center justify-center">
+                    <i data-lucide="image" class="w-4 h-4"></i>
+                  </a>
+                  <button onclick="previewDocument('SM 07-005 s. 2024', 'memos/SM_07_005_s_2024.jpg')" class="p-2 bg-slate-50 hover:bg-slate-100 text-slate-600 rounded-lg transition-colors border border-slate-200 flex items-center justify-center">
+                    <i data-lucide="eye" class="w-4 h-4"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="font-semibold text-slate-900">
+                <a href="memos/SM_07_004_s_2024.jpg" class="text-[#2097c3] hover:underline" target="_blank">SM 07-004 s. 2024</a>
+              </td>
+              <td class="max-w-xs md:max-w-md font-medium text-slate-800">2024 School Oplan Balik Eskwela Public Assistance Command Center (OBE-PACC)</td>
+              <td data-order="2024-07-26" class="whitespace-nowrap">July 26, 2024</td>
+              <td>School Principal's Office</td>
+              <td class="text-right whitespace-nowrap">
+                <div class="inline-flex gap-2">
+                  <a href="memos/SM_07_004_s_2024.jpg" target="_blank" class="p-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-600 rounded-lg transition-colors border border-emerald-100 flex items-center justify-center">
+                    <i data-lucide="image" class="w-4 h-4"></i>
+                  </a>
+                  <button onclick="previewDocument('SM 07-004 s. 2024', 'memos/SM_07_004_s_2024.jpg')" class="p-2 bg-slate-50 hover:bg-slate-100 text-slate-600 rounded-lg transition-colors border border-slate-200 flex items-center justify-center">
+                    <i data-lucide="eye" class="w-4 h-4"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="font-semibold text-slate-900">
+                <a href="memos/SM_07_003_s_2024.jpg" class="text-[#2097c3] hover:underline" target="_blank">SM 07-003 s. 2024</a>
+              </td>
+              <td class="max-w-xs md:max-w-md font-medium text-slate-800">Reiteration on the No Collection Policy</td>
+              <td data-order="2024-07-16" class="whitespace-nowrap">July 16, 2024</td>
+              <td>School Principal's Office</td>
+              <td class="text-right whitespace-nowrap">
+                <div class="inline-flex gap-2">
+                  <a href="memos/SM_07_003_s_2024.jpg" target="_blank" class="p-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-600 rounded-lg transition-colors border border-emerald-100 flex items-center justify-center">
+                    <i data-lucide="image" class="w-4 h-4"></i>
+                  </a>
+                  <button onclick="previewDocument('SM 07-003 s. 2024', 'memos/SM_07_003_s_2024.jpg')" class="p-2 bg-slate-50 hover:bg-slate-100 text-slate-600 rounded-lg transition-colors border border-slate-200 flex items-center justify-center">
+                    <i data-lucide="eye" class="w-4 h-4"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="font-semibold text-slate-900">
+                <a href="memos/SM_07_002_s_2024.jpg" class="text-[#2097c3] hover:underline" target="_blank">SM 07-002 s. 2024</a>
+              </td>
+              <td class="max-w-xs md:max-w-md font-medium text-slate-800">Special Designations</td>
+              <td data-order="2024-07-02" class="whitespace-nowrap">July 02, 2024</td>
+              <td>School Principal's Office</td>
+              <td class="text-right whitespace-nowrap">
+                <div class="inline-flex gap-2">
+                  <a href="memos/SM_07_002_s_2024.jpg" target="_blank" class="p-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-600 rounded-lg transition-colors border border-emerald-100 flex items-center justify-center">
+                    <i data-lucide="image" class="w-4 h-4"></i>
+                  </a>
+                  <button onclick="previewDocument('SM 07-002 s. 2024', 'memos/SM_07_002_s_2024.jpg')" class="p-2 bg-slate-50 hover:bg-slate-100 text-slate-600 rounded-lg transition-colors border border-slate-200 flex items-center justify-center">
+                    <i data-lucide="eye" class="w-4 h-4"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="font-semibold text-slate-900">
+                <a href="memos/SM_07_001_s_2024.jpg" class="text-[#2097c3] hover:underline" target="_blank">SM 07-001 s. 2024</a>
+              </td>
+              <td class="max-w-xs md:max-w-md font-medium text-slate-800">2024-2025 School Enrolment</td>
+              <td data-order="2024-07-02" class="whitespace-nowrap">July 02, 2024</td>
+              <td>School Principal's Office</td>
+              <td class="text-right whitespace-nowrap">
+                <div class="inline-flex gap-2">
+                  <a href="memos/SM_07_001_s_2024.jpg" target="_blank" class="p-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-600 rounded-lg transition-colors border border-emerald-100 flex items-center justify-center">
+                    <i data-lucide="image" class="w-4 h-4"></i>
+                  </a>
+                  <button onclick="previewDocument('SM 07-001 s. 2024', 'memos/SM_07_001_s_2024.jpg')" class="p-2 bg-slate-50 hover:bg-slate-100 text-slate-600 rounded-lg transition-colors border border-slate-200 flex items-center justify-center">
+                    <i data-lucide="eye" class="w-4 h-4"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <!-- Interactive Document Preview Drawer Modal -->
+  <div id="previewDrawer" class="fixed inset-0 z-50 hidden" role="dialog" aria-modal="true">
+    <!-- Backdrop overlay -->
+    <div class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity" onclick="closePreview()"></div>
+    
+    <!-- Drawer panel container -->
+    <div class="fixed inset-y-0 right-0 max-w-full flex pl-10">
+      <div class="w-screen max-w-3xl bg-white shadow-2xl flex flex-col h-full overflow-hidden transform transition-all duration-300 ease-in-out translate-x-0">
+        
+        <!-- Drawer Header -->
+        <div class="px-6 py-5 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <span class="p-2 bg-sky-100 text-[#2097c3] rounded-lg">
+              <i data-lucide="file-text" class="w-5 h-5"></i>
+            </span>
+            <div>
+              <h3 class="text-base font-bold text-slate-900" id="drawerTitle">Document Preview</h3>
+              <p class="text-xs text-slate-500 font-medium">Public Archive</p>
+            </div>
+          </div>
+          <button onclick="closePreview()" class="text-slate-400 hover:text-slate-600 p-2 hover:bg-slate-200/60 rounded-lg transition-all">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+
+        <!-- Drawer Body / Interactive Embed -->
+        <div class="flex-grow bg-slate-100 relative p-4 flex flex-col items-center justify-center overflow-y-auto">
+          
+          <!-- Embedded View Loader & Instruction Frame -->
+          <div class="w-full h-full bg-white rounded-xl border border-slate-200 shadow-sm flex flex-col overflow-hidden">
+            <div class="bg-slate-50 px-4 py-2.5 border-b border-slate-100 flex items-center justify-between text-xs font-semibold text-slate-500">
+              <span class="flex items-center gap-1.5">
+                <i data-lucide="globe" class="w-3.5 h-3.5 text-emerald-500"></i> Publicly Accessible Document
+              </span>
+              <a href="#" id="drawerDirectLink" target="_blank" class="text-[#2097c3] hover:underline flex items-center gap-1">
+                Open in New Tab <i data-lucide="external-link" class="w-3 h-3"></i>
+              </a>
+            </div>
+            
+            <!-- Real Live Preview Iframe (Handles PDFs and Images automatically) -->
+            <iframe id="drawerIframe" class="w-full h-full border-0" sandbox="allow-scripts allow-same-origin allow-popups"></iframe>
+            
+            <!-- Fallback Frame if file isn't loaded/found yet -->
+            <div class="hidden flex-grow flex flex-col items-center justify-center p-8 text-center" id="iframePlaceholder">
+              <div class="p-4 bg-sky-50 text-[#2097c3] rounded-full mb-4">
+                <i data-lucide="file-text" class="w-10 h-10"></i>
+              </div>
+              <h4 class="text-base font-bold text-slate-800">Document Hub Link Ready</h4>
+              <p class="text-xs text-slate-500 mt-2 max-w-md leading-relaxed">
+                If the live preview didn't launch automatically on your browser, you can directly access the document or download it below.
+              </p>
+              
+              <div class="mt-6 flex flex-col sm:flex-row gap-3 w-full max-w-sm justify-center">
+                <a id="drawerBtnPrimary" href="#" target="_blank" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-[#2097c3] hover:bg-[#1a85ad] text-white font-semibold text-sm rounded-lg shadow-sm hover:shadow transition-all">
+                  <i data-lucide="external-link" class="w-4 h-4"></i> Download / Open File
+                </a>
+                <button onclick="closePreview()" class="px-5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-sm rounded-lg transition-colors">
+                  Close Window
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Drawer Footer -->
+        <div class="px-6 py-4 bg-slate-50 border-t border-slate-200 text-center text-xs text-slate-500">
+          Open to all users. No account login or corporate credentials required.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t border-slate-200 mt-12 py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-medium text-slate-500">
+      <div>
+        &copy; 2026 Don Concepcion Elementary School. All rights reserved.
+      </div>
+      <div class="flex gap-4">
+        <a href="#" class="hover:text-[#2097c3]">Privacy Policy</a>
+        <a href="#" class="hover:text-[#2097c3]">Terms of Use</a>
+        <a href="#" class="hover:text-[#2097c3]">Support Helpdesk</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    $(document).ready(function () {
+      // Initialize DataTables with customized UI parameters
+      $('#memoTable').DataTable({
+        order: [[2, 'desc']], 
+        orderClasses: false, 
+        autoWidth: false,
+        responsive: true,
+        pageLength: 10,
+        lengthMenu: [5, 10, 25, 50],
+        language: {
+          search: "Search Hub:",
+          lengthMenu: "Show _MENU_ items per page",
+          info: "Showing _START_ to _END_ of _TOTAL_ issuances",
+          paginate: {
+            first: "First",
+            last: "Last",
+            next: "Next",
+            previous: "Previous"
+          }
+        }
+      });
+
+      // Update counters dynamically
+      const count = $('#memoTable tbody tr').length;
+      $('#totalMemos').text(count);
+
+      // Initialize Lucide icons
+      lucide.createIcons();
+    });
+
+    // Handle Quick Preview Trigger
+    function previewDocument(title, url) {
+      $('#drawerTitle').text(title);
+      $('#drawerDirectLink').attr('href', url);
+      $('#drawerBtnPrimary').attr('href', url);
+      
+      const $iframe = $('#drawerIframe');
+      const $placeholder = $('#iframePlaceholder');
+      
+      // Update iframe source directly to render standard open-access PDF/Image
+      $iframe.attr('src', url);
+      $iframe.removeClass('hidden');
+      $placeholder.addClass('hidden');
+
+      // Reveal preview modal smoothly
+      const $drawer = $('#previewDrawer');
+      $drawer.removeClass('hidden');
+      $('body').addClass('preview-modal-open');
+    }
+
+    // Handle Closing the Preview Drawer
+    function closePreview() {
+      const $drawer = $('#previewDrawer');
+      $drawer.addClass('hidden');
+      $('body').removeClass('preview-modal-open');
+      
+      // Clear iframe state safely
+      $('#drawerIframe').attr('src', '');
+    }
+  </script>
+
+</body>
+</html>
